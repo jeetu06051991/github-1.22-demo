@@ -51,7 +51,8 @@ jobs:
           repository: ${{ fromJson(needs.Authorization.outputs.args).repo }}
           ref: ${{ fromJson(needs.Authorization.outputs.args).ref }}
           lfs: 'true'
-
+      - name: Run Gradle build
+        run: ./gradlew build --info  
       # repo specific steps
       #- name: Setup java
       #  uses: actions/setup-java@v1
