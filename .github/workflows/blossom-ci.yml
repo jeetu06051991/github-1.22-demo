@@ -44,12 +44,6 @@ jobs:
     name: Vulnerability scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ fromJson(needs.Authorization.outputs.args).repo }}
-          ref: ${{ fromJson(needs.Authorization.outputs.args).ref }}
-          lfs: 'true'
       - name: Run Gradle build
         run: ./gradlew build --info  
       # repo specific steps
