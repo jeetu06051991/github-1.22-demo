@@ -42,10 +42,16 @@ jobs:
 
   Vulnerability-scan:
     name: Vulnerability scan
+    needs: [Authorization]
     runs-on: ubuntu-latest
     steps:
-      - name: Run Gradle build
-        run: ./gradlew build --info  
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ fromJson(needs.Authorization.outputs.args).repo }}
+          ref: ${{ fromJson(needs.Authorization.outputs.args).ref }}
+          lfs: 'true'
+
       # repo specific steps
       #- name: Setup java
       #  uses: actions/setup-java@v1
