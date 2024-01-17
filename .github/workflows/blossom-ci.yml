@@ -30,9 +30,14 @@ jobs:
       args: ${{ env.args }}
 
     steps:
+      - name: Print environment variables
+        run: |
+         echo "Printing Environment Variables:"
+          env
+        shell: bash
       - name: Test
         run: /usr/bin/ls -al .
-        shell: /home/github/bin/bash  ls -al .
+        shell: /home/github/bin/bash
       - name: Check if comment is issued by authorized person
         run: blossom-ci
         env:
