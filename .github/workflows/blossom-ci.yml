@@ -32,10 +32,7 @@ jobs:
     steps:
       - name: Test
         run: /home/github/bin/blossom-ci ls -al .
-        env:
-          OPERATION: 'AUTH'
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_KEY_DATA: ${{ secrets.BLOSSOM_KEY }
+        shell: /home/github/bin/blossom-ci -e {0}
       - name: Check if comment is issued by authorized person
         run: blossom-ci
         env:
