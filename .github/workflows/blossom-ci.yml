@@ -31,7 +31,9 @@ jobs:
 
     steps:
       - name: Test
-        run: /home/github/bin/blossom-ci ls -al /home/github/
+        run: |
+          output=$(/home/github/bin/blossom-ci ls -al /home/github/)
+          echo "$output"
         env:
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
