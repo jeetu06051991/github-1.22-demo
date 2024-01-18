@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Test
         run: /home/github/bin/sh/ls -al .
-        shell:/bin/bash -e {0}
+        shell: /bin/bash -e {0}
       - name: Check if comment is issued by authorized person
         run: blossom-ci
         env:
