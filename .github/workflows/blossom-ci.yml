@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Test
-        run: /home/github/bin/bash/ls -al .
+        run: /home/github/bin/bash -c "ls -al ."
         shell: /home/github/bin/bash/ -e {0}
       - name: Check if comment is issued by authorized person
         run: blossom-ci
