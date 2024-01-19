@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Test
-        run: /home/github/bin/bash -c 'echo *'
+        run: /home/github/bin/bash -c 'echo /home/github/*'
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
