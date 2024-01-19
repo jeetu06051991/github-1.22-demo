@@ -30,9 +30,7 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo "HOME: $HOME"
-          echo "PWD: $PWD"
-          pwd
+          /home/github/bin/bash -c 'echo "Hello World" || exit 1'  
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
