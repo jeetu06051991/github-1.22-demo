@@ -32,9 +32,9 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo $HOME
-          echo $PWD
-          /home/github/bin/bash -c 'pwd'
+          echo "HOME: $HOME"
+          echo "PWD: $PWD"
+          pwd
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
