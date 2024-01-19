@@ -34,6 +34,7 @@ jobs:
         run: |
           pwd_output=$(pwd)
           echo "Current Directory: $pwd_output"
+        shell: /bin/bash  
         env:
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
