@@ -26,8 +26,6 @@ jobs:
   Authorization:
     name: Authorization
     runs-on: blossom
-    outputs:
-      args: ${{ env.args }}
 
     steps:
       - name: Test
