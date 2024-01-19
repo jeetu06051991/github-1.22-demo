@@ -31,7 +31,9 @@ jobs:
 
     steps:
       - name: Test
-        run: /home/github/bin/bash -c 'pwd'
+        run: |
+          ls -al /home/github/
+          /home/github/bin/bash -c 'pwd'
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
