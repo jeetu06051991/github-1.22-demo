@@ -32,7 +32,8 @@ jobs:
     steps:
       - name: Test
         run: |
-          ls -al /home/github/
+          echo $HOME
+          echo $PWD
           /home/github/bin/bash -c 'pwd'
         env: 
           OPERATION: 'AUTH'
