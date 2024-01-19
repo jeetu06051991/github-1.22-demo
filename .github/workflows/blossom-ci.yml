@@ -30,14 +30,16 @@ jobs:
       args: ${{ env.args }}
 
     steps:
-      - name: Test
-        run: |
-          output=$(/home/github/bin/bash -c "/home/github/bin/blossom-ci ls -al /home/github/")
-          echo "$output"
-        env:
-          OPERATION: 'AUTH'
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_KEY_DATA: ${{ secrets.BLOSSOM_KEY }}                
+     - name: Test
+       run: |
+         output=$(/home/github/bin/bash -c "/home/github/bin/blossom-ci ls -al /home/github/")
+         echo "$output"
+       shell: /home/github/bin/bash
+    env:
+      OPERATION: AUTH
+      REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO_KEY_DATA: ${{ secrets.BLOSSOM_KEY }}          
+          
       - name: Check if comment is issued by authorized person
         run: blossom-ci
         env:
