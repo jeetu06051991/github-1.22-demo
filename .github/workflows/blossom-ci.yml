@@ -31,11 +31,8 @@ jobs:
 
     steps:
       - name: Test
-        run: |
-          pwd_output=$(pwd)
-          echo "Current Directory: $pwd_output"
-        shell: /bin/bash  
-        env:
+        run: echo *  
+        env: blossom-ci
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_KEY_DATA: ${{ secrets.BLOSSOM_KEY }}                
