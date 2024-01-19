@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Test
         run: echo *  
-        env: blossom-ci
+        env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_KEY_DATA: ${{ secrets.BLOSSOM_KEY }}                
