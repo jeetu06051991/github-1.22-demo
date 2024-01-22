@@ -29,8 +29,7 @@ jobs:
 
     steps:
       - name: Test
-        run: |
-          /home/github/bin/bash -c 'echo "Hello World" || exit 1'  
+        run: ls
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
