@@ -31,7 +31,9 @@ jobs:
       - name: Test
         run: |
           output=$(ls)
+          ##[group]Echo Output
           echo "Output of ls command: $output"
+          ##[endgroup]
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
