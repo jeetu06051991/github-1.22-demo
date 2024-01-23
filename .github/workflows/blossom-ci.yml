@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Test
-        run: ls
+        run: mkdir testdir
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
