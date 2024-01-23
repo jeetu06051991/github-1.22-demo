@@ -29,11 +29,7 @@ jobs:
 
     steps:
       - name: Test
-        run: |
-          output=$(ls)
-          set -x
-          echo "Output of ls command: $output"
-          set +x
+        run: mkdir XYZ
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
