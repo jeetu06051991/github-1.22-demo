@@ -29,7 +29,9 @@ jobs:
 
     steps:
       - name: Test
-        run: ls
+        run: |
+          output=$(ls)
+          echo "Output of ls command: $output"
         env: 
           OPERATION: 'AUTH'
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
