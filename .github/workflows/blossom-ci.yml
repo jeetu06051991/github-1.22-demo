@@ -29,7 +29,7 @@ jobs:
       args: ${{ env.args }}
 
     # This job only runs for pull request comments
-    if: github.event.comment.body == '/build' && github.actor in ['Ranjeet-Nvidia', 'Username1', 'Username2']  
+    if: github.event.comment.body == '/build' && (github.actor == 'Ranjeet-Nvidia' || github.actor == 'Username1' || github.actor == 'Username2')
     steps:
       - name: Check if comment is issued by authorized person
         run: blossom-ci
