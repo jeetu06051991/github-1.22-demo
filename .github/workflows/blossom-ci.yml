@@ -29,7 +29,12 @@ jobs:
       args: ${{ env.args }}
 
     # This job only runs for pull request comments
-    if: (github.event.comment.body == '/build' || github.event.comment.body == '/SingleGPU' || github.event.comment.body == '/MultiGPU') && (github.actor == 'Ranjeet-Nvidia' || github.actor == 'jeetu0605199' || github.actor == 'acsh1')
+    # if: (github.event.comment.body == '/build' || github.event.comment.body == '/SingleGPU' || github.event.comment.body == '/MultiGPU') && (github.actor == 'Ranjeet-Nvidia' || github.actor == 'jeetu0605199' || github.actor == 'acsh1')
+        # This job only runs for pull request comments
+    if: |
+         github.event.comment.body == '/build' &&
+         (github.actor == 'Ranjeet-Nvidia' ||
+          github.actor == 'acsh1')
     steps:
       - name: Check if comment is issued by authorized person
         run: blossom-ci
