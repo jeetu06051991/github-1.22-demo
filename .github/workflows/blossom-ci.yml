@@ -1,3 +1,17 @@
+# Copyright (c) 2020-2021, NVIDIA CORPORATION.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # A workflow to trigger ci on hybrid infra (github + self hosted runner)
 name: Blossom-CI
 on:
@@ -11,16 +25,8 @@ on:
           args:
             description: 'argument'
             required: false
-
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  issues: write
-  pull-requests: write
-  repository-projects: write
-  statuses: write
-
+  merge_group:
+    types: [checks_requested]
 jobs:
   Authorization:
     name: Authorization
@@ -28,9 +34,6 @@ jobs:
     outputs:
       args: ${{ env.args }}
 
-    # This job only runs for pull request comments
-    # if: (github.event.comment.body == '/build' || github.event.comment.body == '/SingleGPU' || github.event.comment.body == '/MultiGPU') && (github.actor == 'Ranjeet-Nvidia' || github.actor == 'jeetu0605199' || github.actor == 'acsh1')
-        # This job only runs for pull request comments
     # This job only runs for pull request comments
     if: |
          github.event.comment.body == '/build-ci' &&
@@ -62,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: ${{ fromJson(needs.Authorization.outputs.args).repo }}
           ref: ${{ fromJson(needs.Authorization.outputs.args).ref }}
@@ -72,7 +75,7 @@ jobs:
       #- name: Setup java
       #  uses: actions/setup-java@v1
       #  with:
-      #    java-version: '1.8'
+      #    java-version: 1.8
 
       # add blackduck properties https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/631308372/Methods+for+Configuring+Analysis#Using-a-configuration-file
       #- name: Setup blackduck properties
@@ -80,9 +83,6 @@ jobs:
       #       PROJECTS=$(mvn -am dependency:tree | grep maven-dependency-plugin | awk '{ out="com.nvidia:"$(NF-1);print out }' | grep rapids | xargs | sed -e 's/ /,/g')
       #       echo detect.maven.build.command="-pl=$PROJECTS -am" >> application.properties
       #       echo detect.maven.included.scopes=compile >> application.properties
-      #- name: Setup blackduck properties
-      #  run: |
-      #       echo detect.excluded.detector.types=ALL >> application.properties
 
       - name: Run blossom action
         uses: NVIDIA/blossom-action@main
@@ -106,12 +106,12 @@ jobs:
           CI_SERVER: ${{ secrets.CI_SERVER }}
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  Post-processing:
-    name: Post processing
+  Upload-Log:
+    name: Upload log
     runs-on: blossom
     if : github.event_name == 'workflow_dispatch'
     steps:
-      - name: Start post processing
+      - name: Jenkins log for pull request ${{ fromJson(github.event.inputs.args).pr }} (click here)
         run: blossom-ci
         env:
           OPERATION: 'POST-PROCESSING'
