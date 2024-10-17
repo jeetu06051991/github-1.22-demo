@@ -25,9 +25,6 @@ on:
           args:
             description: 'argument'
             required: false
-  merge_group:
-    types: [checks_requested]
-
 jobs:
   Authorization:
     name: Authorization
@@ -38,8 +35,7 @@ jobs:
     # This job only runs for pull request comments
     if: |
          github.event.comment.body == '/build-ci' &&
-         (github.actor == 'Ranjeet-Nvidia') 
-         
+         (github.actor == 'Ranjeet-Nvidia')
     steps:
       - name: Check if comment is issued by authorized person
         run: blossom-ci
