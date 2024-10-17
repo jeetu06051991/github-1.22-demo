@@ -37,8 +37,8 @@ jobs:
 
     # This job only runs for pull request comments
     if: |
-         github.event.comment.body == '/build-ci' &&
-         (github.actor == 'Ranjeet-Nvidia')
+         (github.event.comment.body == '/build-ci' && github.actor == 'Ranjeet-Nvidia') ||
+         github.event_name == 'merge_group'         
     steps:
       - name: Check if comment is issued by authorized person
         run: blossom-ci
