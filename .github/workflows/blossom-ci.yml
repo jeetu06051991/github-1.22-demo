@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # A workflow to trigger ci on hybrid infra (github + self hosted runner)
-name: Blossom-CI
+name: Blossom-CI for PR #${{ github.event.inputs.args.pr }}
 on:
   issue_comment:
     types: [created]
@@ -23,7 +23,7 @@ on:
             description: 'runs-on argument'
             required: false
           args:
-            description: 'argument'
+            description: 'argument (expects a JSON with pr number)'
             required: false
 jobs:
   Authorization:
@@ -92,7 +92,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   Upload-Log:
-    name: Upload log
+    name: Upload log for PR #${{ github.event.inputs.args.pr }}
     runs-on: blossom
     if : github.event_name == 'workflow_dispatch'
     steps:
