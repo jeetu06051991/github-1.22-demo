@@ -92,7 +92,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   Upload-Log:
-    name: Upload log
+    name: Upload log for PR #${{ fromJson(github.event.inputs.args).pr }}
     runs-on: blossom
     if : github.event_name == 'workflow_dispatch'
     steps:
