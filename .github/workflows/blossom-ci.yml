@@ -25,8 +25,19 @@ on:
           args:
             description: 'argument'     
             required: false  
-run-name: Blossom-CI ${{ 'Logs PR#' fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}            
+
 jobs:
+  set-run-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set run name
+        id: set_run_name
+        run: |
+          if [[ "${{ fromJson(github.event.inputs.args || '{}').pr || '' }}" != "" ]]; then
+            echo "run_name=Blossom-CI Logs PR# ${{ fromJson(github.event.inputs.args || '{}').pr }} by @${{ github.actor }}" >> $GITHUB_ENV
+          else
+            echo "run_name=Blossom-CI Logs by @${{ github.actor }}" >> $GITHUB_ENV
+          fi
   Authorization:
     name: Authorization
     runs-on: blossom
