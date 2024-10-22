@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # A workflow to trigger ci on hybrid infra (github + self hosted runner)
-name:  Blossom-CI
+name: ${{ github.event.inputs.run-name }}  # Set the workflow name dynamically
 on:
   issue_comment:
     types: [created]
@@ -24,8 +24,12 @@ on:
             required: false
           args:
             description: 'argument'     
-            required: false  
-run-name: Blossom-CI Log PR# ${{  fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}
+            required: false 
+          run-name:
+            description: 'Dynamic Run Name'
+            required: true  # Make this required if you want to enforce it
+            
+#run-name: Blossom-CI Log PR# ${{  fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}
 jobs:
   Authorization:
     name: Authorization
