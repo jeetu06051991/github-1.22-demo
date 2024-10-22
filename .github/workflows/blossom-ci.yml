@@ -25,6 +25,7 @@ on:
           args:
             description: 'argument'     
             required: false
+run-name: Blossom CI for PR ${{ fromJson(github.event.inputs.args).pr }} by @${{ github.actor }}            
 jobs:
   Authorization:
     name: Authorization
