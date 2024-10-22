@@ -24,7 +24,8 @@ on:
             required: false
           args:
             description: 'argument'     
-            required: false          
+            required: false 
+run-name: Blossom-CI for PR by @${{ github.actor }}            
 jobs:
   Authorization:
     name: Authorization
@@ -95,7 +96,6 @@ jobs:
     name: Upload log for PR ${{ fromJson(github.event.inputs.args).pr }}
     runs-on: blossom
     if : github.event_name == 'workflow_dispatch'
-    run-name: Blossom-CI for PR ${{ fromJson(github.event.inputs.args).pr }} by @${{ github.actor }}
     steps:
       - name: Jenkins log for pull request ${{ fromJson(github.event.inputs.args).pr }} (click here)
         run: blossom-ci
