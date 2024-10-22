@@ -27,9 +27,8 @@ on:
             required: false
           run-name: 
             description: 'run-time'
-            required: false
-run-name: ${{  fromJson(github.event.inputs.args || '{}').pr || 'Default Name' }}            
-#run-name: Blossom-CI Log PR# ${{  fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}
+            required: false           
+run-name: Blossom-CI Log PR# ${{  fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}
 jobs:
   Authorization:
     name: Authorization
