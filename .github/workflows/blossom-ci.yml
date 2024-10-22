@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # A workflow to trigger ci on hybrid infra (github + self hosted runner)
-run-name:  Blossom-CI ${{ fromJson(github.event.inputs.args).pr }}
+name:  Blossom-CI ${{ fromJson(github.event.inputs.args).pr }}
 on:
   issue_comment:
     types: [created]
