@@ -24,21 +24,9 @@ on:
             required: false
           args:
             description: 'argument'     
-            required: false   
+            required: false  
+run-name: Blossom-CI ${{ Logs PR# fromJson(github.event.inputs.args || '{}').pr || '' }} by @${{ github.actor }}            
 jobs:
-  set_run_name:
-    runs-on: ubuntu-latest
-    outputs:
-      run_name: ${{ steps.set_name.outputs.run_name }}
-    steps:
-      - id: set_name
-        run: |
-          pr_value=$(echo '${{ fromJson(github.event.inputs.args || '{}').pr }}')
-          if [ "$pr_value" == "null" ] || [ -z "$pr_value" ]; then
-            echo "run_name=" >> $GITHUB_ENV
-          else
-            echo "run_name=Blossom-CI for PR $pr_value by @${{ github.actor }}" >> $GITHUB_ENV
-          fi
   Authorization:
     name: Authorization
     runs-on: blossom
