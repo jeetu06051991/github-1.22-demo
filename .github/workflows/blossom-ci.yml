@@ -28,7 +28,7 @@ on:
           run-name: 
             description: 'run-name'
             required: false           
-run-name: ${{github.event.inputs.run-name || '' }}   
+run-name: ${{github.event.inputs.run-name || '' }} 
 jobs:
   Authorization:
     name: Authorization
