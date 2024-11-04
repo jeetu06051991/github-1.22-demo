@@ -17,6 +17,8 @@ name: Blossom-CI
 on:
   issue_comment:
     types: [created]
+  merge_group:
+    types: [checks_requested]  
   workflow_dispatch:
       inputs:
           platform:
@@ -27,14 +29,8 @@ on:
             required: false
           run-name: 
             description: 'run-name'
-            required: false   
-  push:
-    branches:
-      - main
-    # Add the 'merge_group' trigger if available
-    types: [merge_group]         
+            required: false     
 run-name: ${{github.event.inputs.run-name || '' }}
-
 jobs:
   Authorization:
     name: Authorization
