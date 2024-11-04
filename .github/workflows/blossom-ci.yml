@@ -17,8 +17,6 @@ name: Blossom-CI
 on:
   issue_comment:
     types: [created]
-  merge_group:
-    types: [checks_requested]  
   workflow_dispatch:
       inputs:
           platform:
