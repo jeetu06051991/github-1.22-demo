@@ -27,7 +27,12 @@ on:
             required: false
           run-name: 
             description: 'run-name'
-            required: false           
+            required: false   
+  push:
+    branches:
+      - main
+    # Add the 'merge_group' trigger if available
+    types: [merge_group]         
 run-name: ${{github.event.inputs.run-name || '' }}
 
 jobs:
@@ -39,8 +44,9 @@ jobs:
 
     # This job only runs for pull request comments
     if: |
-         github.event.comment.body == '/build-ci' &&
-         (github.actor == 'Ranjeet-Nvidia')
+      (github.event_name == 'issue_comment' && github.event.comment.body == '/build-ci' &&
+       (github.actor == 'Ranjeet-Nvidia')) ||
+      github.event_name == 'merge_group'     
     steps:
       - name: Check if comment is issued by authorized person
         run: blossom-ci
