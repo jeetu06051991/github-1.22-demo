@@ -24,11 +24,7 @@ on:
             required: false
           args:
             description: 'argument'     
-            required: false
-          run-name: 
-            description: 'run-name'
-            required: false     
-run-name: ${{github.event.inputs.run-name || '' }}
+            required: false  
 jobs:
   Authorization:
     name: Authorization
