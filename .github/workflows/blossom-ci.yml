@@ -17,8 +17,6 @@ name: Blossom-CI
 on:
   issue_comment:
     types: [created]
-  pull_request:
-    types: [opened, reopened, synchronize]
   workflow_dispatch:
       inputs:
           platform:
