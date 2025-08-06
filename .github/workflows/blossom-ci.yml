@@ -21,8 +21,6 @@ on:
     types: [opened, reopened, synchronize]
     branches:
       - main
-      - master
-      - dev
   workflow_dispatch:
       inputs:
           platform:
