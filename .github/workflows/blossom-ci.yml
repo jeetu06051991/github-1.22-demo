@@ -102,7 +102,7 @@ jobs:
     runs-on: blossom
     if : github.event_name == 'workflow_dispatch'
     steps:
-      - name: Jenkins log from job ${{ fromJson(github.event.inputs.args).job }} (build ${{ fromJson(github.event.inputs.args).build }}) 
+      - name: Jenkins log for pull request ${{ fromJson(github.event.inputs.args).pr }} (click here)
         run: blossom-ci
         env:
           OPERATION: 'POST-PROCESSING'
