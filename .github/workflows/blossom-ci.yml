@@ -33,9 +33,7 @@ jobs:
     if: |
      (github.event_name == 'issue_comment' && github.event.comment.body == '/build' && (github.actor == 'Ranjeet-Nvidia' || github.actor == 'jeetu06051991'))
      ||
-     (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
-     ||
-     (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository)
+     (github.event_name == 'pull_request_target')
            
     steps:
       - name: Check if comment is issued by authorized person
